@@ -17,6 +17,7 @@ public class Produit {
     private String description;
     private Double prixUnitaire;
     private Integer seuilAlerte;
+    private Integer stock;
 
     @ManyToOne
     @JoinColumn(name = "categorie_id")

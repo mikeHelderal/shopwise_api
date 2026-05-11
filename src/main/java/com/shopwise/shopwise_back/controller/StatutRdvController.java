@@ -8,7 +8,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/statuts")
-@CrossOrigin(origins = "*")
 public class StatutRdvController {
     @Autowired
     private StatutRdvService statutRdvService;
