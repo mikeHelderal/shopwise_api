@@ -1,0 +1,27 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main ] # Se déclenche quand tu push sur main
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupère le code du dépôt
+      - uses: actions/checkout@v4
+
+      # 2. Installe Java (JDK 17)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven' # Cache les dépendances pour aller plus vite
+
+      # 3. Compile et lance les tests unitaires
+      - name: Build and Test with Maven
+        run: mvn clean verify
