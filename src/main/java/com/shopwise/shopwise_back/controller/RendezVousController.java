@@ -8,7 +8,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/rendez-vous")
-@CrossOrigin(origins = "*")
 public class RendezVousController {
     @Autowired
     private RendezVousService rdvService;
@@ -18,4 +17,12 @@ public class RendezVousController {
 
     @PostMapping
     public RendezVous create(@RequestBody RendezVous rdv) { return rdvService.save(rdv); }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) { rdvService.cancel(id);}
+
+    @PatchMapping("/{id}/honorer")
+    public RendezVous honorer(@PathVariable Long id) {
+        return rdvService.honorerRdv(id);
+    }
 }

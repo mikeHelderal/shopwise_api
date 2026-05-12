@@ -15,4 +15,8 @@ public class ProduitService {
     public List<Produit> listAll() { return produitRepository.findAll(); }
     public Produit save(Produit p) { return produitRepository.save(p); }
     public void delete(Long id) { produitRepository.deleteById(id); }
+
+    public long countLowStock(){
+        return produitRepository.countLowStock();
+    }
 }

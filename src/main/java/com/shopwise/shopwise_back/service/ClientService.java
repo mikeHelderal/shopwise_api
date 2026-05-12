@@ -33,4 +33,8 @@ public class ClientService {
     public void delete(Long id) {
         clientRepository.deleteById(id);
     }
+
+    public long countAll(){
+        return clientRepository.count();
+    }
 }
