@@ -10,8 +10,8 @@ public class webConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // S'applique à toutes les routes de l'API
-                .allowedOrigins("http://localhost:4200") // L'origine de ton Front Angular
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:4200","http://localhost")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
