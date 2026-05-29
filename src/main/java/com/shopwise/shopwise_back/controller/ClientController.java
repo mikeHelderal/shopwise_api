@@ -19,4 +19,10 @@ public class ClientController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) { clientService.delete(id); }
+
+    @GetMapping("/search")
+    public Client getByEmail(@RequestParam String email) {
+        return clientService.getByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Client introuvable avec l'adresse email : " + email));
+    }
 }
