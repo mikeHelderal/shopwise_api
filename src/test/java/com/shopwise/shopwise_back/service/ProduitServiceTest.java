@@ -27,4 +27,14 @@ public class ProduitServiceTest {
         assertEquals(5L, result);
         verify(produitRepository, times(1)).countLowStock();
     }
+
+    @Test
+    void testDeleteProduit() {
+        Long id = 1L;
+        doNothing().when(produitRepository).deleteById(id);
+
+        produitService.delete(id);
+
+        verify(produitRepository, times(1)).deleteById(id);
+    }
 }

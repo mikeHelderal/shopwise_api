@@ -24,4 +24,9 @@ public class RendezVous {
     @ManyToOne
     @JoinColumn(name = "statut_id")
     private StatutRdv statut;
+
+    @ManyToOne
+    @JoinColumn(name = "produit_id")
+    private Produit produit;
+
 }

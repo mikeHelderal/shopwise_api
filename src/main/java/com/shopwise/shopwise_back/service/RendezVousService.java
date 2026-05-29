@@ -1,7 +1,9 @@
 package com.shopwise.shopwise_back.service;
 
 import com.shopwise.shopwise_back.model.Client;
+import com.shopwise.shopwise_back.model.Produit;
 import com.shopwise.shopwise_back.model.RendezVous;
+import com.shopwise.shopwise_back.repository.ProduitRepository;
 import com.shopwise.shopwise_back.repository.RendezVousRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,18 @@ public class RendezVousService {
     @Autowired
     private RendezVousRepository rdvRepository;
 
+    @Autowired
+    private ProduitRepository produitRepository;
+
     public List<RendezVous> listAll() { return rdvRepository.findAll(); }
-    public RendezVous save(RendezVous rdv) { return rdvRepository.save(rdv); }
+    public RendezVous save(RendezVous rdv) {
+        if (rdv.getProduit() != null && rdv.getProduit().getId() != null) {
+            Produit produit = produitRepository.findById(rdv.getProduit().getId())
+                    .orElseThrow(() -> new RuntimeException("Service/Produit introuvable"));
+            rdv.setProduit(produit);
+        }
+        return rdvRepository.save(rdv);
+    }
     public void cancel(Long id) { rdvRepository.deleteById(id); }
 
     @Transactional
